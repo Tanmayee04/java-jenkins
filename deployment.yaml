@@ -6,7 +6,6 @@ spec:
   replicas: 2
   selector:
     matchLabels: 
-      name: java-app
       labels: 
         app: java-app1
   template: 
