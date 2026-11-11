@@ -21,7 +21,7 @@ pipeline {
 
     stage ("Push to Dockerhub") {
       steps {
-        withCredentials([usernamePassword(credentialsID:"my-docker-hub-credentials-id", usernameVariable: "USER", passwordVariable: "PASS")]) {
+        withCredentials([usernamePassword(credentialsId:"my-docker-hub-credentials-id", usernameVariable: "USER", passwordVariable: "PASS")]) {
           sh "echo ${PASS} | docker login -u ${USER} --password-stdin"
           sh "docker push ${USER}/java-jenkins"
         }
