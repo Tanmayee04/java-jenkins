@@ -9,13 +9,13 @@ pipeline {
     }
     stage ("Build docker image") {
       steps {
-        sh "docker build -t java-jenkins ."
+        sh "docker build -t ${USER}/java-jenkins ."
       }
     }
 
     stage ("Run docker image") {
       steps {
-        sh "docker run --rm java-jenkins"
+        sh "docker run --rm ${USER}/java-jenkins"
       }
     }
 
@@ -23,7 +23,6 @@ pipeline {
       steps {
         withCredentials([usernamePassword(credentialsId:"my-docker-hub-credentials-id", usernameVariable: "USER", passwordVariable: "PASS")]) {
           sh "echo ${PASS} | docker login -u ${USER} --password-stdin"
-          sh "docker tag java-jenkins ${USER}/java-jenkins"
           sh "docker push ${USER}/java-jenkins"
         }
       }
