@@ -30,7 +30,7 @@ pipeline {
 
     stage ("K8S") {
       steps {
-        sh "kubectl apply deployment.yaml"
+        sh "kubectl apply -f deployment.yaml"
         sh "kubectl get pods"
       }
     }
