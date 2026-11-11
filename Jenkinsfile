@@ -15,7 +15,7 @@ pipeline {
 
     stage ("Run docker image") {
       steps {
-        sh "docker run --rm --name java1 java-jenkins"
+        sh "docker run --rm java-jenkins"
       }
     }
 
