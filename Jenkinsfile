@@ -12,9 +12,19 @@ pipeline {
         sh "docker build -t java-jenkins ."
       }
     }
+
     stage ("Run docker image") {
       steps {
         sh "docker run --name java1 java-jenkins"
+      }
+    }
+
+    stage ("Push to Dockerhub") {
+      steps {
+        withCredentials([usernamePassword(credentialsID:"my-docker-hub-credentials-id", usernameVariable: "USER", passwordVariable: "PASS")]) {
+          sh "echo ${PASS} | docker login -u ${USER} --password-stdin"
+          sh "docker push ${USER}/java-jenkins"
+        }
       }
     }
   }
