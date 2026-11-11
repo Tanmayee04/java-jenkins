@@ -23,6 +23,7 @@ pipeline {
       steps {
         withCredentials([usernamePassword(credentialsId:"my-docker-hub-credentials-id", usernameVariable: "USER", passwordVariable: "PASS")]) {
           sh "echo ${PASS} | docker login -u ${USER} --password-stdin"
+          sh "docker tag java-jenkins ${USER}/java-jenkins"
           sh "docker push ${USER}/java-jenkins"
         }
       }
