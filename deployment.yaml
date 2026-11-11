@@ -6,15 +6,12 @@ spec:
   replicas: 2
   selector:
     matchLabels: 
-      labels: 
-        app: java-app1
+      app: java-app1
   template: 
     metadata: 
-      name: java-app
       labels: 
         app: java-app1
     spec: 
-      containers: 
+      containers:
         - name: java-cont
           image: tanmayeedhakate/java-jenkins
-  
